@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+
+//两个数组相加给到第三个数组，再用排序算法
+void Array_Add_Sort(int a[], int lena, int b[], int lenb, int c[], int lenc)
+{
+	int i = 0, j = 0, k = 0;
+	while (i < lena)
+	{
+		c[i] = a[i];
+		i++;
+	}
+	while (j < lenb)
+	{
+		c[lena++] = b[j++];
+	}
+	//for (k = 0; k < lenc; k++)
+	//{
+	//	printf("%d ", c[k]);		
+	//}
+	//cout << endl << endl;
+
+	for (i = 0; i < lenc; i++)
+	{
+		for (j = 0; j < lenc - i - 1; j++)
+		{
+			//if (*(c + j) < *(c + j + 1))
+			//{
+			//	int temp = *(c + j);
+			//	*(c + j) = *(c + j + 1);
+			//	*(c + j + 1) = temp;
+			//}
+			if (c[j] < c[j + 1])
+			{
+				int temp = c[j];
+				c[j] = c[j + 1];
+				c[j + 1] = temp;
+			}
+		}
+	}
+
+	for (k = 0; k < lenc; k++)
+	{
+		printf("%d ", c[k]);
+	}
+	cout << endl << endl;
+}
+
+int main()
+{
+	int a[] = { 2, 4, -1, 3 };
+	int b[] = { 99, 2, 81, -5, 66, 4 };
+	int c[20] = {};
+
+	int lena = sizeof(a) / sizeof(int);
+	int lenb = sizeof(b) / sizeof(int);
+	int lenc = lena + lenb;
+
+	Array_Add_Sort(a, lena, b, lenb, c, lenc);
+
+}
